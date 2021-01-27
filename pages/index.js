@@ -1,4 +1,7 @@
+import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
+
 import db from '../db.json';
 import Widget from '../src/components/Widget';
 import QuizLogo from '../src/components/QuizLogo';
@@ -11,13 +14,23 @@ export const QuizContainer = styled.div`
   max-width: 350px;
   padding-top: 45px;
   margin: auto 10%;
+
   @media screen and (max-width: 500px) {
     margin: auto;
     padding: 15px;
   }
 `;
 
-export default function Home() {
+function Home() {
+  const router = useRouter();
+
+  const [name, setName] = useState('');
+
+  const submit = useCallback((event) => {
+    event.preventDefault();
+    router.push(`/quiz?name=${name}`);
+  }, [name]);
+
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
@@ -33,14 +46,24 @@ export default function Home() {
 
         <Widget>
           <Widget.Content>
-            <h1>Quizes da Galera</h1>
+            <form onSubmit={(event) => submit(event)}>
+              <input
+                placeholder="Digite seu nome"
+                onChange={(event) => setName(event.target.value)}
+              />
 
-            <p>lorem ipsum dolor sit amet...</p>
+              <button type="submit" disabled={name.length === 0}>
+                {`Jogar ${name}`}
+              </button>
+            </form>
           </Widget.Content>
         </Widget>
+
         <Footer />
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/Luanfv" />
     </QuizBackground>
   );
 }
+
+export default Home;
