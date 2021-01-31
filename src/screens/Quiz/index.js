@@ -6,13 +6,13 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 
-import db from '../db.json';
-import Widget from '../src/components/Widget';
-import QuizLogo from '../src/components/QuizLogo';
-import QuizBackground from '../src/components/QuizBackground';
-import QuizContainer from '../src/components/QuizContainer';
-import Button from '../src/components/Button';
-import AlternativesForm from '../src/components/AlternativesForm';
+import Widget from '../../components/Widget';
+import QuizLogo from '../../components/QuizLogo';
+import QuizBackground from '../../components/QuizBackground';
+import QuizContainer from '../../components/QuizContainer';
+import Button from '../../components/Button';
+import AlternativesForm from '../../components/AlternativesForm';
+import BackLinkArrow from '../../components/BackLinkArrow';
 
 function LoadingWidget() {
   return (
@@ -81,7 +81,7 @@ function QuestionWidget({
   return (
     <Widget>
       <Widget.Header>
-        {/* <BackLinkArrow href="/" /> */}
+        <BackLinkArrow href="/" />
         <h3>
           {`Pergunta ${questionIndex + 1} de ${totalQuestions}`}
         </h3>
@@ -160,14 +160,15 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 
-export default function QuizPage() {
+export default function QuizPage({ externalQuestions, externalBg }) {
   const [screenState, setScreenState] = useState(screenStates.LOADING);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [results, setResults] = useState([]);
 
-  const totalQuestions = useMemo(() => db.questions.length, [db]);
+  const totalQuestions = useMemo(() => externalQuestions.length, [externalQuestions]);
   const questionIndex = useMemo(() => currentQuestion, [currentQuestion]);
-  const question = useMemo(() => db.questions[questionIndex], [db, questionIndex]);
+  const question = useMemo(() => externalQuestions[questionIndex], [externalQuestions, questionIndex]);
+  const bg = useMemo(() => externalBg, [externalBg]);
 
   useEffect(() => {
     // fetch() ...
@@ -193,7 +194,7 @@ export default function QuizPage() {
   }, [questionIndex, totalQuestions]);
 
   return (
-    <QuizBackground backgroundImage={db.bg}>
+    <QuizBackground backgroundImage={bg}>
       <QuizContainer>
         <QuizLogo />
         {screenState === screenStates.QUIZ && (

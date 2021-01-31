@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 import db from '../db.json';
 
@@ -11,6 +12,7 @@ import GitHubCorner from '../src/components/GitHubCorner';
 import Input from '../src/components/Input';
 import Button from '../src/components/Button';
 import QuizContainer from '../src/components/QuizContainer';
+import Link from '../src/components/Link';
 
 function Home() {
   const router = useRouter();
@@ -27,7 +29,16 @@ function Home() {
       <QuizContainer>
         <QuizLogo />
 
-        <Widget>
+        <Widget
+          as={motion.section}
+          transition={{ delay: 0, duration: 0.5 }}
+          variants={{
+            show: { opacity: 1, y: '0' },
+            hidden: { opacity: 0, y: '100%' },
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Widget.Header>
             <h1>{db.title}</h1>
           </Widget.Header>
@@ -48,13 +59,47 @@ function Home() {
           </Widget.Content>
         </Widget>
 
-        <Widget>
+        <Widget
+          as={motion.section}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          variants={{
+            show: { opacity: 1, y: '0' },
+            hidden: { opacity: 0, y: '100%' },
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Widget.Content>
-            <p>{db.description}</p>
+            <h1>
+              Quiz da galera
+            </h1>
+
+            <ul>
+              {db.external.map((externalQuiz) => {
+                const [project, user] = externalQuiz.replace('https://', '').replace('.vercel.app/', '').split('.');
+
+                return (
+                  <li key={externalQuiz}>
+                    <Widget.Topic as={Link} href={`/quiz/${project}__${user}`}>
+                      {`${user}/${project}`}
+                    </Widget.Topic>
+                  </li>
+                );
+              })}
+            </ul>
           </Widget.Content>
         </Widget>
 
-        <Footer />
+        <Footer
+          as={motion.section}
+          transition={{ delay: 1, duration: 0.5 }}
+          variants={{
+            show: { opacity: 1, y: '0' },
+            hidden: { opacity: 0, y: '100%' },
+          }}
+          initial="hidden"
+          animate="show"
+        />
       </QuizContainer>
 
       <GitHubCorner projectUrl="https://github.com/Luanfv" />
