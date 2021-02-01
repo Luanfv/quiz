@@ -5,6 +5,11 @@ import React, {
   useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
+import Lottie from 'lottie-react-web';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+
+import loading from '../../assets/animations/loading.json';
 
 import Widget from '../../components/Widget';
 import QuizLogo from '../../components/QuizLogo';
@@ -22,7 +27,11 @@ function LoadingWidget() {
       </Widget.Header>
 
       <Widget.Content>
-        [Desafio do Loading]
+        <Lottie
+          options={{
+            animationData: loading,
+          }}
+        />
       </Widget.Content>
     </Widget>
   );
@@ -33,9 +42,19 @@ function ResultsWidget({ results }) {
     () => results.reduce((total, result) => total + (result ? 1 : 0), 0),
     [results],
   );
+  const router = useRouter();
 
   return (
-    <Widget>
+    <Widget
+      as={motion.section}
+      transition={{ delay: 0, duration: 1 }}
+      variants={{
+        show: { opacity: 1 },
+        hidden: { opacity: 0 },
+      }}
+      initial="hidden"
+      animate="show"
+    >
       <Widget.Header>
         Tela de resultado
       </Widget.Header>
@@ -53,6 +72,10 @@ function ResultsWidget({ results }) {
             ))
           }
         </ul>
+
+        <Button onClick={router.back}>
+          Voltar para Home
+        </Button>
       </Widget.Content>
     </Widget>
   );
@@ -79,7 +102,16 @@ function QuestionWidget({
   );
 
   return (
-    <Widget>
+    <Widget
+      as={motion.section}
+      transition={{ delay: 0, duration: 0.7 }}
+      variants={{
+        show: { opacity: 1, y: '0' },
+        hidden: { opacity: 0, y: '100%' },
+      }}
+      initial="hidden"
+      animate="show"
+    >
       <Widget.Header>
         <BackLinkArrow href="/" />
         <h3>

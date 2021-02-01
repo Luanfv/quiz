@@ -1,10 +1,5 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-
-import Lottie from 'lottie-react-web';
-
-import loading from '../../src/assets/animations/loading.json';
-
 import QuizScreen from '../../src/screens/Quiz';
 
 function OthersQuizPage({ dbExterno }) {
