@@ -199,7 +199,10 @@ export default function QuizPage({ externalQuestions, externalBg }) {
 
   const totalQuestions = useMemo(() => externalQuestions.length, [externalQuestions]);
   const questionIndex = useMemo(() => currentQuestion, [currentQuestion]);
-  const question = useMemo(() => externalQuestions[questionIndex], [externalQuestions, questionIndex]);
+  const question = useMemo(
+    () => externalQuestions[questionIndex],
+    [externalQuestions, questionIndex],
+  );
   const bg = useMemo(() => externalBg, [externalBg]);
 
   useEffect(() => {
@@ -257,4 +260,9 @@ QuestionWidget.propTypes = {
 
 ResultsWidget.propTypes = {
   results: PropTypes.isRequired,
+};
+
+QuizPage.propTypes = {
+  externalQuestions: PropTypes.isRequired,
+  externalBg: PropTypes.string.isRequired,
 };

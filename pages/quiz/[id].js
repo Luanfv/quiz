@@ -1,5 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import PropTypes from 'prop-types';
+
 import QuizScreen from '../../src/screens/Quiz';
 
 function OthersQuizPage({ dbExterno }) {
@@ -35,5 +37,9 @@ export async function getServerSideProps({ query }) {
     },
   };
 }
+
+OthersQuizPage.propTypes = {
+  dbExterno: PropTypes.isRequired,
+};
 
 export default OthersQuizPage;
