@@ -54,10 +54,11 @@ Widget.Topic = styled.a`
   background-color: ${({ theme }) => `${theme.colors.primary}40`};
   padding: 10px 15px;
   margin-bottom: 8px;
-  cursor: pointer;
   border-radius: ${({ theme }) => theme.borderRadius};
   transition: .3s;
   display: block;
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 
   &:hover,
   &:focus {

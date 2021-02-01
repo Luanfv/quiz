@@ -80,7 +80,11 @@ function Home() {
 
                 return (
                   <li key={externalQuiz}>
-                    <Widget.Topic as={Link} href={`/quiz/${project}__${user}`}>
+                    <Widget.Topic
+                      as={Link}
+                      href={name.length === 0 ? '' : `/quiz/${project}__${user}`}
+                      disabled={name.length === 0}
+                    >
                       {`${user}/${project}`}
                     </Widget.Topic>
                   </li>

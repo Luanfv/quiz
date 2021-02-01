@@ -61,13 +61,13 @@ function ResultsWidget({ results }) {
 
       <Widget.Content>
         <p>
-          {`Você acertou ${points} perguntas!`}
+          {`${router.query.name}, você acertou ${points} perguntas de ${results.length}!`}
         </p>
         <ul>
           {
             results.map((result, key) => (
               <li>
-                {`#${key} Resultado: ${result ? 'Acertou' : 'Errou'}`}
+                {`#${key + 1} Resultado: ${result ? 'Acertou' : 'Errou'}`}
               </li>
             ))
           }
