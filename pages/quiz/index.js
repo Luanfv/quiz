@@ -113,7 +113,7 @@ function ResultsWidget({ results }) {
         <br />
 
         <Button onClick={router.back}>
-          Voltar para Home
+          Voltar
         </Button>
       </Widget.Content>
     </Widget>
