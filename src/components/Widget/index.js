@@ -47,6 +47,14 @@ Widget.Content = styled.div`
   }
 `;
 
+Widget.Content.Graphic = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
 Widget.Topic = styled.a`
   outline: 0;
   text-decoration: none;

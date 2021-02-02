@@ -8,6 +8,12 @@ import PropTypes from 'prop-types';
 import Lottie from 'lottie-react-web';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
+import {
+  PieChart,
+  Pie,
+  Tooltip,
+  Cell,
+} from 'recharts';
 
 import loading from '../../assets/animations/loading.json';
 
@@ -37,10 +43,19 @@ function LoadingWidget() {
   );
 }
 
-function ResultsWidget({ results }) {
+function ResultsWidget({ results, colors }) {
+  const { success, wrong } = colors;
+  const COLORS = [success, wrong];
   const points = useMemo(
     () => results.reduce((total, result) => total + (result ? 1 : 0), 0),
     [results],
+  );
+  const data = useMemo(
+    () => [
+      { name: 'Acertos', value: points },
+      { name: 'Erros', value: (results.length - points) },
+    ],
+    [results, points],
   );
   const router = useRouter();
 
@@ -63,6 +78,27 @@ function ResultsWidget({ results }) {
         <p>
           {`${router.query.name}, você acertou ${points} perguntas de ${results.length}!`}
         </p>
+
+        <Widget.Content.Graphic>
+          <PieChart width={200} height={200}>
+            <Pie
+              data={data}
+              cx={100}
+              cy={100}
+              labelLine={false}
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {
+                // eslint-disable-next-line react/no-array-index-key
+                data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+              }
+            </Pie>
+            <Tooltip />
+          </PieChart>
+        </Widget.Content.Graphic>
+
         <ul>
           {
             results.map((result, key) => (
@@ -72,6 +108,8 @@ function ResultsWidget({ results }) {
             ))
           }
         </ul>
+
+        <br />
 
         <Button onClick={router.back}>
           Voltar para Home
@@ -192,7 +230,7 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 
-export default function QuizPage({ externalQuestions, externalBg }) {
+export default function QuizPage({ externalQuestions, externalBg, colors }) {
   const [screenState, setScreenState] = useState(screenStates.LOADING);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [results, setResults] = useState([]);
@@ -244,7 +282,7 @@ export default function QuizPage({ externalQuestions, externalBg }) {
 
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
-        {screenState === screenStates.RESULT && <ResultsWidget results={results} />}
+        {screenState === screenStates.RESULT && <ResultsWidget results={results} colors={colors} />}
       </QuizContainer>
     </QuizBackground>
   );
@@ -260,9 +298,11 @@ QuestionWidget.propTypes = {
 
 ResultsWidget.propTypes = {
   results: PropTypes.isRequired,
+  colors: PropTypes.isRequired,
 };
 
 QuizPage.propTypes = {
   externalQuestions: PropTypes.isRequired,
   externalBg: PropTypes.string.isRequired,
+  colors: PropTypes.isRequired,
 };

@@ -18,6 +18,7 @@ function OthersQuizPage({ dbExterno }) {
         <QuizScreen
           externalQuestions={dbExterno.questions}
           externalBg={dbExterno.bg}
+          colors={dbExterno.theme.colors}
         />
       </ThemeProvider>
     );
