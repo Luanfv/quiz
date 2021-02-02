@@ -1,28 +1,76 @@
 {
-  "bg": "https://i2.wp.com/css-tricks.com/wp-content/uploads/2017/06/css-is-awesome-scaled.jpg?resize=1536%2C1208&ssl=1",
-  "title": "Quiz CSS da Alura",
+  "bg": "https://wallpapercave.com/wp/wp4170579.jpg",
+  "title": "Quiz do Napoleão Bonaparte",
   "description": "Teste os seus conhecimentos sobre CSS e vamos ver quantos layouts você vai deixar de quebrar",
   "questions": [
     {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
-      "description": "Essa é pra aquecer",
-      "answer": 2,
+      "image": "https://cdn.dribbble.com/users/261302/screenshots/2192967/star.gif",
+      "title": "Quem era um dos maiores idolos de Napoleão ?",
+      "description": "Napoleão tenha um idolo que inspirou durante sua jornada, marca abaixo o nome desse idolo.",
+      "answer": 3,
       "alternatives": [
-        ".elemento",
-        "*elemento",
-        "#elemento",
-        "%elemento"
+        "Mahatma Gandhi",
+        "Almirante Nelson",
+        "Aristoteles",
+        "Alexandre, o grande"
       ]
     },
     {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
-      "description": "Faz tempo em haha",
+      "image": "https://media.istockphoto.com/vectors/warlike-napoleon-bonaparte-cartoon-character-holding-hat-and-sword-in-vector-id979974016?k=6&m=979974016&s=170667a&w=0&h=dwkXgnv94qkkXZ9inI1V1gyCV9Vp-gadZ8qF5JcM7uA=",
+      "title": "Com quantos anos Napoleão ganhou o título de tenente do exercito frances ?",
+      "description": "Sem dúvida, Napoleão foi um prodígio e se formou na academia militar cedo, logo conquistou o título de tenente.",
+      "answer": 1,
+      "alternatives": [
+         "15 anos",
+         "16 anos",
+         "17 anos",
+         "18 anos"
+      ]
+    },
+    {
+      "image": "https://i.gifer.com/PSc.gif",
+      "title": "Qual eventos historia ajudou Napoleão a crescer e ser reconhecido ?",
+      "description": "Durante o início de sua carreira aconteceu um evento que ajudou muito Napoleão a ser reconhecido.",
       "answer": 0,
       "alternatives": [
-         "background: linear-gradient(#e66465, #9198e5);",
-         "background: gradient(#e66465, #9198e5);"
+         "Revolução Francesa",
+         "Revolução Industrial",
+         "Revolução Farroupilha",
+         "Primeira Guerra Mundial"
+      ]
+    },
+    {
+      "image": "https://s3-sa-east-1.amazonaws.com/manual-do-enem-test/400a6b6d02be4bb59a9078f99f51aa66-napole%C3%A3o%20bonaparte.png",
+      "title": "O que Napoleão fez para aumentar e manter sua fama ?",
+      "description": "Qual foi a ação que Napeloão fez para que os franceses sempre o admirasse.",
+      "answer": 3,
+      "alternatives": [
+         "Criou uma estatua sua",
+         "Fez caridade",
+         "Criou uma marca de chapeu",
+         "Criou jornais"
+      ]
+    },
+    {
+      "image": "https://static.todamateria.com.br/upload/na/po/napoleao-bonaparte-og.jpg",
+      "title": "Napoleão virou imperador da frança ?",
+      "description": "Responda com sim ou não.",
+      "answer": 0,
+      "alternatives": [
+         "Sim",
+         "Não"
+      ]
+    },
+    {
+      "image": "https://res.cloudinary.com/people-matters/image/upload/w_624,h_351,c_scale,q_auto,f_auto/v1474952326/1474952324.jpg",
+      "title": "Quem era o principal rival econômico da França na Era Napoleônica ?",
+      "description": "Durante o comando de Napoleão a França tinha tinha um grande rival economico.",
+      "answer": 0,
+      "alternatives": [
+         "Inglaterra",
+         "Russia",
+         "EUA",
+         "Alemanha"
       ]
     }
   ],
